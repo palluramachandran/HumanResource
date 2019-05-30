@@ -47,7 +47,7 @@
 					<i class="fas fa-university"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					SB Admin <sup>2</sup>
+					HRMS
 				</div>
 			</a>
 
@@ -56,19 +56,16 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item "><a class="nav-link"
-				href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Configuration.html">
+				href="departmentConfiguration">
 					<i class="fas fa-fw fa-building"></i> <span>Departments</span>
 			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Heading -->
-
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item active"><a class="nav-link"
-				href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20EmployeeConfiguration.html">
+				href="employeeConfiguration">
 					<i class="fas fa-fw fa-users"></i> <span>Employees</span>
 			</a></li>
 
@@ -120,7 +117,7 @@
 
 						<li class="nav-item no-arrow mx-1 bg-gradient-primary"><a
 							class="nav-link"
-							href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Configuration.html">
+							href="departmentConfiguration.html">
 								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
 						</a> <!-- Dropdown - Alerts --></li>
 					</ul>
@@ -150,6 +147,7 @@
 								</h6>
 						</div>
 						<div class="card-body">
+						<div><a href="addEmployee"  class="btn btn-primary col-lg-2 float-lg-right">Add</a></div>
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" cellspacing="0">
 									<thead>
@@ -162,20 +160,11 @@
 											<th>SkillSet</th>
 											<th>Gender</th>
 											<th>Salary</th>
+											<th class="text-center">Edit</th>
+											<th class="text-center">Delete</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-
-											<th>FirstName</th>
-											<th>LastName</th>
-											<th>EmailID</th>
-											<th>Designation</th>
-											<th>SkillSet</th>
-											<th>Gender</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
 										<c:forEach var="e" items="${employee}">
 											<tr>
@@ -188,6 +177,8 @@
 												<td><c:out value="${e.skillSet}" /></td>
 												<td><c:out value="${e.gender}" /></td>
 												<td><c:out value="${e.salary}" /></td>
+												<td class="text-center"><a href="editEmployee/${e.empId}"><i class="fa fa-edit text-info"></i></a></td>
+												<td class="text-center"><a href="deleteEmployee/${e.empId}"><i class="fa fa-trash text-danger"></i></a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -220,35 +211,11 @@
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded"
-		href="file:///E:/javaworkspace/TemplateModification/index.html#page-top"
+		href="#page-top"
 		style="display: none;"> <i class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary"
-						href="file:///E:/javaworkspace/TemplateModification/login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Bootstrap core JavaScript-->
+		<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

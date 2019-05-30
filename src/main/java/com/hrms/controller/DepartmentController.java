@@ -37,18 +37,20 @@ public class DepartmentController {
 	}
 
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String getHomePage()
+	public String home()
 	{
-		return "default";
+		return "redirect:analytics";
 	}
 	
 	@RequestMapping(value="/analytics",method=RequestMethod.GET)
-	public String getAnalytics()
+	public ModelAndView getAnalytics()
 	{
-		return "Analytics";
+		List<DepartmentEmpDetails> departmentEmpDetailsList=departmentsService.getDepartmentEmpDetails();
+		ModelAndView model=new ModelAndView();
+		model.addObject("departmentEmpDetailsList", departmentEmpDetailsList);
+		model.setViewName("Analytics");
+		return model;
 	}
-
-
 
 	@RequestMapping(value="/departmentEmpDetails",method=RequestMethod.GET,headers="Accept=application/json")
 	public @ResponseBody List<DepartmentEmpDetails> getDepartmentEmpDetails()
@@ -61,34 +63,34 @@ public class DepartmentController {
 		return departmentEmpDetailsList;
 	}
 
-	@RequestMapping(value="/departmentEmpSalaryDetails",method=RequestMethod.GET)
-	public ModelAndView getDepartmentEmpSalaryDetails()
+	@RequestMapping(value="/departmentEmpSalaryDetails",method=RequestMethod.GET,headers="Accept=application/json")
+	public @ResponseBody List<DepartmentEmpDetails> getDepartmentEmpSalaryDetails()
 	{
 		List<DepartmentEmpDetails>	departmentEmpDetailsList=departmentsService.getDepartmentEmpDetails();
 		ModelAndView model=new ModelAndView();
 		model.addObject("departmentEmpDetailsList",departmentEmpDetailsList);
-		model.setViewName("DepartmentEmpSalaryDetails");
+		model.setViewName("Analytics");
 		
-		return model;
+		return departmentEmpDetailsList;
 	}
 
-	@RequestMapping(value="/departmentSkills",method=RequestMethod.GET)
-	public ModelAndView getDepartmentSkills()
+	@RequestMapping(value="/departmentSkills",method=RequestMethod.GET,headers="Accept=application/json")
+	public @ResponseBody List<DepartmentSkills> getDepartmentSkills()
 	{
 		List<DepartmentSkills> departmentSkillList=departmentsService.getDepartmentSkills();
-		ModelAndView model=new ModelAndView();
-		model.addObject("departmentSkillList",departmentSkillList);
-		model.setViewName("DepartmentSkillCount");
-		return model;
+		//ModelAndView model=new ModelAndView();
+		//model.addObject("departmentSkillList",departmentSkillList);
+		//model.setViewName("DepartmentSkillCount");
+		return departmentSkillList;
 	}
 
-	@RequestMapping(value="/departments",method=RequestMethod.GET)
+	@RequestMapping(value="/departmentConfiguration",method=RequestMethod.GET)
 	public ModelAndView getDepartments()
 	{
 		List<Department> departmentList=departmentsService.getDepartments();
 		ModelAndView model=new ModelAndView();
 		model.addObject("departmentList",departmentList);
-		model.setViewName("DepartmentTable");
+		model.setViewName("DepartmentConfiguration");
 		return model;
 	}
 	@RequestMapping(value="/editDepartment/{deptId}",method=RequestMethod.GET)
@@ -97,7 +99,7 @@ public class DepartmentController {
 		Department department=departmentsService.editDepartment(deptId);
 		ModelAndView model=new ModelAndView();
 		model.addObject("department",department);
-		model.setViewName("EditDepartment");
+		model.setViewName("UpdateDepartmentForm");
 		return model;
 	}
 
@@ -105,21 +107,22 @@ public class DepartmentController {
 	public String updateDepartment(@ModelAttribute Department department)
 	{
 		departmentsService.updateDepartment(department);
-		return "redirect:departments";
+		return "redirect:departmentConfiguration";
 	}
 
 	@RequestMapping(value="/deleteDepartment/{deptId}",method=RequestMethod.GET)
 	public String deleteDepartment(@PathVariable int deptId)
 	{
 		departmentsService.deleteDepartment(deptId);
-		return "redirect:/departments";
+		return "redirect:/departmentConfiguration";
 	}
 
 	@RequestMapping(value="/addDepartment",method=RequestMethod.GET)
 	public ModelAndView addDepartment(Department department)
 	{
 		ModelAndView model=new ModelAndView();
-		model.setViewName("AddDepartment");
+		//model.setViewName("AddDepartment");
+		model.setViewName("DepartmentForm");
 		Department departments=new Department();
 		model.addObject("departments",departments);
 		return model;
@@ -130,7 +133,7 @@ public class DepartmentController {
 	public String submitDepartment(@ModelAttribute Department department)
 	{
 		departmentsService.submitDepartment(department);
-		return "redirect:departments";
+		return "redirect:departmentConfiguration";
 	}
 
 

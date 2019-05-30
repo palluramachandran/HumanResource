@@ -42,12 +42,12 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="file:///E:/javaworkspace/TemplateModification/index.html">
+				href="analytics">
 				<div class="sidebar-brand-icon">
 					<i class="fas fa-university"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">
-					SB Admin <sup>2</sup>
+					HRMS 
 				</div>
 			</a>
 
@@ -56,7 +56,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Configuration.html">
+				href="departmentConfiguration">
 					<i class="fas fa-fw fa-building"></i> <span>Departments</span>
 			</a></li>
 
@@ -68,7 +68,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item "><a class="nav-link"
-				href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20EmployeeConfiguration.html">
+				href="employeeConfiguration">
 					<i class="fas fa-fw fa-users"></i> <span>Employees</span>
 			</a></li>
 
@@ -105,7 +105,7 @@
 						<!-- Nav Item - Alerts -->
 						<li class="nav-item active no-arrow mx-1 show"><a
 							class="nav-link"
-							href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Analytics.html">
+							href="analytics">
 								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Alerts -->
 								Analytics
 						</a> <!-- Dropdown - Alerts --></li>
@@ -120,7 +120,7 @@
 
 						<li class="nav-item no-arrow mx-1 bg-gradient-primary"><a
 							class="nav-link"
-							href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Configuration.html">
+							href="departmentConfiguration">
 								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
 						</a> <!-- Dropdown - Alerts --></li>
 					</ul>
@@ -150,7 +150,7 @@
 								</h6>
 						</div>
 						<div class="card-body">
-							<div><button type="button" class="btn btn-primary col-lg-2 float-lg-right">Add</button></div>
+							<div><a href="addDepartment" class="btn btn-primary col-lg-2 float-lg-right">Add</a></div>
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" cellspacing="0">
 									<thead>
@@ -158,21 +158,19 @@
 											<th>Department Name</th>
 											<th>Description</th>
 											<th>Active</th>
+											<th class="text-center">Edit</th>
+											<th class="text-center">Delete</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Department Name</th>
-											<th>Description</th>
-											<th>Active</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
 										<c:forEach var="d" items="${departmentList}">
 											<tr>
 												<td><c:out value="${d.deptName}" /></td>
 												<td><c:out value="${d.description}" /></td>
 												<td><c:out value="${d.active}" /></td>
+												<td class="text-center"><a href="editDepartment/${d.deptId}"><i class="fa fa-edit text-info"></i></a></td>
+												<td class="text-center"><a href="deleteDepartment/${d.deptId}"><i class="fa fa-trash text-danger"></i></a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -205,33 +203,9 @@
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded"
-		href="file:///E:/javaworkspace/TemplateModification/index.html#page-top"
+		href="#page-top"
 		style="display: none;"> <i class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary"
-						href="file:///E:/javaworkspace/TemplateModification/login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>

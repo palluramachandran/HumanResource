@@ -1,5 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<!-- saved from url=(0076)file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Analytics.html -->
+
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,10 +32,6 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- Sidebar -->
-
-		<!-- End of Sidebar -->
-
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 
@@ -48,35 +48,23 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-					<!-- Topbar Search -->
-
-
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav">
-
-						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-
-
-						<!-- Nav Item - Alerts -->
+						<!-- Analytics button -->
 						<li class="nav-item active no-arrow mx-1 bg-gradient-primary">
 							<a class="nav-link"
-							href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Analytics.html">
-								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Alerts -->
+							href="analytics">
+								<i class="fas fa-fw fa-chart-area"></i> 
 								Analytics
-						</a> <!-- Dropdown - Alerts -->
+						</a> 
 
 						</li>
 
-						<!-- Nav Item - Messages -->
-
-
 						<div class="topbar-divider d-none d-sm-block"></div>
 
-						<!-- Nav Item - User Information -->
-
-
+						<!-- Nav Item - Configuration  -->
 						<li class="nav-item no-arrow mx-1"><a class="nav-link"
-							href="file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Configuration.html">
+							href="departmentConfiguration">
 								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
 						</a> <!-- Dropdown - Alerts --></li>
 					</ul>
@@ -86,9 +74,9 @@
 						<div class="input-group">
 
 							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
+								<a class="btn btn-primary" href="logout">
 									<span>Logout</span> <i class="fas fa-sign-out-alt fa-sm"></i>
-								</button>
+								</a>
 							</div>
 						</div>
 					</form>
@@ -103,7 +91,7 @@
 					<div class="row">
 
 						<!-- Departments Pie Chart -->
-						<div class="col-xl-6 col-lg-7">
+						<div class="col-xl-6 col-lg-6">
 							<div class="card shadow mb-4">
 								<!-- Card Header-->
 								<div
@@ -121,16 +109,36 @@
 						</div>
 
 						<!-- Departments Details Table-->
-						<div class="col-xl-6 col-lg-5">
-							<div class="card shadow mb-4">
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Department
-										Details</h6>
-								</div>
-								<!-- Card Body -->
-								<div class="card-body"></div>
+						<div class="col-xl-6 col-lg-6 mb-4">
+					<div class="card shadow mb-4 h-100">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Department Details
+								</h6>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" cellspacing="0">
+									<thead>
+										<tr>
+											<th>Department Name</th>
+											<th>Description</th>
+											<th>Active</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										<c:forEach var="d" items="${departmentEmpDetailsList}">
+											<tr>
+												<td><c:out value="${d.deptName}" /></td>
+												<td><c:out value="${d.noOfEmployees}" /></td>
+												<td><c:out value="${d.salary}" /></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 							</div>
+						</div>
+					</div>
 						</div>
 					</div>
 
@@ -164,6 +172,8 @@
 								</div>
 								<div class="card-body">
 									<!-- Department Level Skills Bar Chart -->
+									<div id="highChartsDepartmentSkills"></div>
+									
 								</div>
 							</div>
 						</div>
@@ -178,7 +188,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright © Pallavi PR 2019</span>
+						<span>Copyright � Pallavi PR 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -192,33 +202,9 @@
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded"
-		href="file:///E:/javaworkspace/TemplateModification/index.html#page-top"
+		href="#page-top"
 		style="display: none;"> <i class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary"
-						href="file:///E:/javaworkspace/TemplateModification/login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
@@ -231,18 +217,23 @@
 	<script src="resources/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins for Chart-->
-	<script src="resources/vendor/chart.js/Chart.min.js"></script>
 	<script src="resources/js/highcharts.js"></script>
 	<script src="resources/js/highcharts-3d.js"></script>
+	
+	<!-- Page level plugins for table -->
+	<script src="resources/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<!-- <script src=resources/js/demo/chart-area-demo.js"></script>
-	<script src="resources/js/demo/chart-pie-demo.js"></script> -->
 	<script type="text/javascript">
-	$(document).ready(function(){
-			//Department Chart-Start
-		    var processed_json = new Array();
-		    $.getJSON('http://localhost:8088/HumanResource/departmentEmpDetails', function(data) {
+	
+	Highcharts.setOptions({
+		 colors: ['#0275d8', '#5bc0de', '#5cb85c', '#f0ad4e', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+		});
+	
+	//Department Chart-Start
+    $(document).ready(function(){
+			var processed_json = new Array();
+		    $.getJSON('http://localhost:8089/HumanResource/departmentEmpDetails', function(data) {
 		        // Populate series
 		        for (i = 0; i < data.length; i++){
 		        	  processed_json.push([data[i].deptName, data[i].noOfEmployees]);
@@ -267,16 +258,96 @@
 		                }
 		            },
 		            series: [{
+		            	type:'pie',
 		                name: 'Departments',
 		                data: processed_json
 		            }]
 		        }); 
 			});
-		  //Department Chart-End
-	
 	});
+		  //Department Chart-End
+		  
+		  //skill Chart-start
+		  $(document).ready(function(){
+		  var processed_json = new Array();
+		    $.getJSON('http://localhost:8089/HumanResource/employeeSkills', function(data) {
+		        // Populate series
+		        for (i = 0; i < data.length; i++){
+		        	  processed_json.push([data[i].skill, data[i].noOfEmployees]);
+		          }
+		        $('#highChartsEmployeeSkills').highcharts({
+		            chart: {
+		                type: "column"
+		            },
+		            title: {
+		                text: "EmployeeSkill And No of Employees"
+		            },
+		            xAxis: {
+		                type: 'category',
+		                allowDecimals: false,
+		                title: {
+		                    text: "Skill"
+		                }
+		            },
+		            yAxis: {
+		                title: {
+		                    text: "No. of Employees"
+		                }
+		            },
+		            series: [{
+		                name: 'Employees',
+		                data: processed_json
+		            }]
+		        }); 
+			});
+			});
+		  //skill Chart-End
+		  
+		  
+		  //DepartmentSkill Chart-Start
+		  $(document).ready(function(){
+		  var processed_json = new Array();
+		  var categories_json = new Array();
+		    $.getJSON('http://localhost:8089/HumanResource/departmentSkills', function(data) {
+		        // Populate series
+		        for (i = 0; i < data.length; i++){
+		        	  processed_json.push([data[i].skill, data[i].noOfEmployees]);
+		        	  categories_json.push([data[i].deptName]);
+		          }
+		        $('#highChartsDepartmentSkills').highcharts({
+		            chart: {
+		                type: "column"
+		            },
+		            title: {
+		                text: "EmployeeSkill And No of Employees"
+		            },
+		            xAxis: {
+		                categories : categories_json,
+		                allowDecimals: false,
+		                title: {
+		                    text: "Department Name"
+		                }
+		            },
+		            yAxis: {
+		                title: {
+		                    text: "No. of Employees"
+		                }
+		            },
+		            series: [{
+		            	name: 'No of Employees',
+		                data: processed_json
+		            }]
+		        }); 
+			});
+			});
+		    
+		  
+		  //Department Level Skill Chart-end
+		  
+// 		 $(document).ready(function() {
+// 			$('#dataTable').DataTable();
+// 		});
+		    
 	</script>
-
-
 </body>
 </html>

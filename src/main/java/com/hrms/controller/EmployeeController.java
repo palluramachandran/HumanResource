@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hrms.model.Department;
@@ -36,23 +37,23 @@ public class EmployeeController {
 	
 	
 
-	@RequestMapping(value="/employeeSkills",method=RequestMethod.GET)
-	public ModelAndView getEmployeeSkills()
+	@RequestMapping(value="/employeeSkills",method=RequestMethod.GET,headers="Accept=application/json")
+	public @ResponseBody List<EmployeeSkills> getEmployeeSkills()
 	{
 		List<EmployeeSkills> empSkillList=employeeService.getEmployeeSkills();
-		ModelAndView model=new ModelAndView();
-		model.addObject("empSkillList",empSkillList);
-		model.setViewName("EmployeeSkillCount");
-		return model;
+		//ModelAndView model=new ModelAndView();
+		//model.addObject("empSkillList",empSkillList);
+	    //model.setViewName("EmployeeSkillCount");
+		return empSkillList;
 	}
 
-	@RequestMapping(value="/employees",method=RequestMethod.GET)
+	@RequestMapping(value="/employeeConfiguration",method=RequestMethod.GET)
 	public ModelAndView getEmployees()
 	{
 		List<Employee> employee=employeeService.getEmployees();
 		ModelAndView model=new ModelAndView();
 		model.addObject("employee", employee);
-		model.setViewName("EmployeeTable");
+		model.setViewName("EmployeeConfiguration");
 		return model;
 		
 	}
@@ -72,14 +73,14 @@ public class EmployeeController {
 	public String updateEmployee(@ModelAttribute Employee employee)
 	{
 		employeeService.updateEmployee(employee);
-		return "redirect:employees";
+		return "redirect:employeeConfiguration";
 	}
 
 	@RequestMapping(value="/deleteEmployee/{empId}",method=RequestMethod.GET)
 	public String deleteEmployee(@PathVariable int empId)
 	{
 		employeeService.deleteEmployee(empId);
-		return "redirect:/employees";
+		return "redirect:/employeeConfiguration";
 
 	}
 
@@ -87,9 +88,9 @@ public class EmployeeController {
 	public ModelAndView addEmployee(Employee employee)
 	{
 		ModelAndView model=new ModelAndView();
-		model.setViewName("AddEmployee");
-		Map<Integer,String> departmentMap=departmentsService.getDepartmentMap();
-		model.addObject("departments", departmentMap);
+		model.setViewName("EmployeeForm");
+		//Map<Integer,String> departmentMap=departmentsService.getDepartmentMap();
+		//model.addObject("departments", departmentMap);
 		Employee employees=new Employee();
 		model.addObject("employees",employees);
 		return model;
@@ -100,6 +101,6 @@ public class EmployeeController {
 	public String submitEmployee(@ModelAttribute Employee employee) 
 	{
 		employeeService.submitEmployee(employee);
-		return "redirect:employees";
+		return "redirect:employeeConfiguration";
 	}
 }

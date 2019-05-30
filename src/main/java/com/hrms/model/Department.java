@@ -4,7 +4,7 @@ public class Department {
 	int deptId;
 	String deptName;
 	String description;
-	boolean active;
+	boolean active=true;
 	public Department() {}
 	public Department(int deptId,String deptName,String description,boolean active)
 	{
