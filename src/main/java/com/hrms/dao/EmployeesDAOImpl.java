@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-
+import com.hrms.model.Department;
 import com.hrms.model.Employee;
 import com.hrms.model.EmployeeSkills;
 @Repository
@@ -57,22 +57,21 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 
 	@Override
 	public Employee editEmployee(int empId) {
-		String sql=" select e.emp_id,d.dept_id,e.first_name,e.last_name,e.email_id,e.designation,e.skill_set,e.gender,e.password,e.salary " + 
-				" from employee.employees e inner join employee.departments d " + 
-				"on e.emp_id=d.dept_id where e.emp_id=?";
+		String sql="select e.dept_id,e.emp_id,e.first_name,e.last_name,e.email_id,e.designation,e.skill_set,e.gender,e.password,e.salary from employee.employees e where e.emp_id=?";
 		Employee employee=jdbcTemplate.queryForObject(sql, new RowMapper<Employee>() {
 
 			@Override
-			public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set"),rs.getString("gender"),rs.getString("password"),rs.getInt("salary"));
+			public Employee mapRow(ResultSet rs, int rownum) throws SQLException {
+				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set"),
+						rs.getString("gender"),rs.getString("password"),rs.getInt("salary"));
 				return employee;
 			}
-		},empId);
-		
-		
+			
+			
+		}, empId);
 		return employee;
-		
 	}
+
 
 	@Override
 	public void updateEmployee(Employee employee) {

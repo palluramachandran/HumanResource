@@ -23,9 +23,6 @@
 <!-- Custom styles for this template-->
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 
-<!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css"
-	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -130,9 +127,9 @@
 						<div class="input-group">
 
 							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
+								<a class="btn btn-primary" href="logout">
 									<span>Logout</span> <i class="fas fa-sign-out-alt fa-sm"></i>
-								</button>
+								</a>
 							</div>
 						</div>
 					</form>
@@ -169,8 +166,8 @@
 												<td><c:out value="${d.deptName}" /></td>
 												<td><c:out value="${d.description}" /></td>
 												<td><c:out value="${d.active}" /></td>
-												<td class="text-center"><a href="editDepartment/${d.deptId}"><i class="fa fa-edit text-info"></i></a></td>
-												<td class="text-center"><a href="deleteDepartment/${d.deptId}"><i class="fa fa-trash text-danger"></i></a></td>
+												<td class="text-center"><a href="editDepartment?deptId=${d.deptId}"><i class="fa fa-edit text-info"></i></a></td>
+												<td class="text-center"><a href="deleteDepartment?deptId=${d.deptId}"><i class="fa fa-trash text-danger"></i></a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

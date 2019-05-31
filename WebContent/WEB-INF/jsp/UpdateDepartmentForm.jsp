@@ -22,11 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-<body id="page-top" class="sidebar-toggled">
+<body id="page-top"  class="sidebar-toggled">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -43,27 +39,24 @@
 				<div class="sidebar-brand-icon">
 					<i class="fas fa-university"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">
-					HRMS
-				</div>
+				<div class="sidebar-brand-text mx-3">HRMS</div>
 			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
-			<!-- Nav Item - Dashboard -->
-			<li class="nav-item "><a class="nav-link"
-				href="departmentConfiguration">
-					<i class="fas fa-fw fa-building"></i> <span>Departments</span>
-			</a></li>
+			<!-- Nav Item - Department -->
+			<li class="nav-item active"><a class="nav-link"
+				href="departmentConfiguration"> <i class="fas fa-fw fa-building"></i>
+					<span>Departments</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item active"><a class="nav-link"
-				href="employeeConfiguration">
-					<i class="fas fa-fw fa-users"></i> <span>Employees</span>
+			<!-- Nav Item - Employee -->
+			<li class="nav-item"><a class="nav-link"
+				href="employeeConfiguration"> <i class="fas fa-fw fa-users"></i>
+					<span>Employees</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -96,27 +89,23 @@
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav">
 
-						<!-- Nav Item - Alerts -->
+						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+
+						<!-- Nav Item - Analytics -->
 						<li class="nav-item active no-arrow mx-1 show"><a
-							class="nav-link"
-							href="analytics">
-								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Alerts -->
+							class="nav-link" href="analytics"> <i
+								class="fas fa-fw fa-chart-area"></i> <!-- Counter - Alerts -->
 								Analytics
-						</a> <!-- Dropdown - Alerts --></li>
-
-						<!-- Nav Item - Messages -->
-
+						</a></li>
 
 						<div class="topbar-divider d-none d-sm-block"></div>
 
-						<!-- Nav Item - User Information -->
-
+						<!-- Nav Item - Configuration -->
 
 						<li class="nav-item no-arrow mx-1 bg-gradient-primary"><a
-							class="nav-link"
-							href="departmentConfiguration.html">
-								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
-						</a> <!-- Dropdown - Alerts --></li>
+							class="nav-link" href="departmentConfiguration"> <i
+								class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
+						</a></li>
 					</ul>
 
 					<form
@@ -136,53 +125,72 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					
-					<!-- DataTales Employee -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Employee Details
-								</h6>
-						</div>
-						<div class="card-body">
-						<div><a href="addEmployee"  class="btn btn-primary col-lg-2 float-lg-right">Add</a></div>
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" cellspacing="0">
-									<thead>
-										<tr>
-											
-											<th>FirstName</th>
-											<th>LastName</th>
-											<th>EmailID</th>
-											<th>Designation</th>
-											<th>SkillSet</th>
-											<th>Gender</th>
-											<th>Salary</th>
-											<th class="text-center">Edit</th>
-											<th class="text-center">Delete</th>
-										</tr>
-									</thead>
-									
-									<tbody>
-										<c:forEach var="e" items="${employee}">
-											<tr>
+					<!-- Content Row -->
+
+					<div class="row">
+
+						<!-- Area Chart -->
+						<div class="col-xl-12 col-lg-12 mb-4">
+							<div class="card shadow mb-4 h-100">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Department</h6>
+									<div class="dropdown no-arrow"></div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<form:form modelAttribute="department" method="post"
+										action="updateDepartment">
+										<div class="form-group row">
+											<label for="name" class="col-lg-2 col-xl-2">Name <span
+												class="required text-danger">*</span></label>
+
+											<div class="col-lg-8 col-xl-8">
+												<form:input type="hidden" path="deptId"/>
+												<form:input type="text" class="form-control" id="deptname"
+													path="deptName" placeholder="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="description" class="col-lg-2 col-xl-2">Description</label>
+											<div class="col-lg-8 col-xl-8">
+												<form:input type="text" class="form-control"
+													id="description" path="description" placeholder="" />
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="active" class="col-lg-2 col-xl-2">Active</label>
+											<div class="col-lg-8 col-xl-8">
+												<div class="form-check">
+													<form:radiobutton path="active" id="active" value="true" />
+													<label class="checkbox-inline" for="active"> Active
+													</label>
+													<form:radiobutton path="active" id="inactive" value="false" />
+													<label class="checkbox-inline" for="inactive">
+														Inactive </label>
+												</div>
+											</div>
+										</div>
 
 
-												<td><c:out value="${e.firstName}" /></td>
-												<td><c:out value="${e.lastName}" /></td>
-												<td><c:out value="${e.emailId}" /></td>
-												<td><c:out value="${e.designation}" /></td>
-												<td><c:out value="${e.skillSet}" /></td>
-												<td><c:out value="${e.gender}" /></td>
-												<td><c:out value="${e.salary}" /></td>
-												<td class="text-center"><a href="editEmployee?empId=${e.empId}"><i class="fa fa-edit text-info"></i></a></td>
-												<td class="text-center"><a href="deleteEmployee?empId=${e.empId}"><i class="fa fa-trash text-danger"></i></a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+										<div class="text-center">
+
+											<button type="Reset" class="btn btn-primary col-sm-2">Reset</button>
+                                				
+											<input type="submit" class="btn btn-primary col-sm-2" value="Update"/> 
+													
+
+
+										</div>
+									</form:form>
+								</div>
 							</div>
 						</div>
 					</div>
+
+					<!-- Content Row -->
+
 
 				</div>
 				<!-- /.container-fluid -->
@@ -194,7 +202,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright Â© Pallavi PR 2019</span>
+						<span>Copyright © Pallavi PR 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -207,12 +215,10 @@
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded"
-		href="#page-top"
-		style="display: none;"> <i class="fas fa-angle-up"></i>
+	<a class="scroll-to-top rounded" href="#page-top"
+		style="display: inline;"> <i class="fas fa-angle-up"></i>
 	</a>
-
-		<!-- Bootstrap core JavaScript-->
+	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -221,19 +227,5 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="resources/js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="resources/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-	<!-- Custom Script for datatable loading -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#dataTable').DataTable();
-		});
-	</script>
-
-
-
 </body>
 </html>

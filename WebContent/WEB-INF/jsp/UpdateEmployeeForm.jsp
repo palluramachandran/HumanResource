@@ -45,19 +45,24 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
-			<!-- Nav Item - Department -->
-			<li class="nav-item active"><a class="nav-link"
+			<!-- Nav Item - Dashboard -->
+			<li class="nav-item "><a class="nav-link"
 				href="departmentConfiguration"> <i class="fas fa-fw fa-building"></i>
 					<span>Departments</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Nav Item - Employee -->
-			<li class="nav-item"><a class="nav-link"
+			<!-- Heading -->
+
+
+			<!-- Nav Item - Pages Collapse Menu -->
+			<li class="nav-item active"><a class="nav-link"
 				href="employeeConfiguration"> <i class="fas fa-fw fa-users"></i>
 					<span>Employees</span>
 			</a></li>
+
+
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -86,26 +91,34 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
+					<!-- Topbar Search -->
+
+
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav">
 
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
 
-						<!-- Nav Item - Analytics -->
+
+						<!-- Nav Item - Alerts -->
 						<li class="nav-item active no-arrow mx-1 show"><a
 							class="nav-link" href="analytics"> <i
 								class="fas fa-fw fa-chart-area"></i> <!-- Counter - Alerts -->
 								Analytics
-						</a></li>
+						</a> <!-- Dropdown - Alerts --></li>
+
+						<!-- Nav Item - Messages -->
+
 
 						<div class="topbar-divider d-none d-sm-block"></div>
 
-						<!-- Nav Item - Configuration -->
+						<!-- Nav Item - User Information -->
+
 
 						<li class="nav-item no-arrow mx-1 bg-gradient-primary"><a
 							class="nav-link" href="departmentConfiguration"> <i
 								class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
-						</a></li>
+						</a> <!-- Dropdown - Alerts --></li>
 					</ul>
 
 					<form
@@ -125,72 +138,136 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- Content Row -->
 
+					<!-- Content Row -->
 					<div class="row">
 
-						<!-- Area Chart -->
-						<div class="col-xl-12 col-lg-12 mb-4">
-							<div class="card shadow mb-4 h-100">
+
+						<div class="col-xl-12 col-lg-12">
+							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Department</h6>
-									<div class="dropdown no-arrow"></div>
+									<h6 class="m-0 font-weight-bold text-primary">Employee
+										Details</h6>
+
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
-									<form:form modelAttribute="department" method="post"
-										action="submitDepartment">
-										<div class="form-group row">
-											<label for="name" class="col-lg-2 col-xl-2">Name <span
-												class="required text-danger">*</span></label>
 
+									<form:form modelAttribute="employee" method="post"
+										action="updateEmployee">
+
+										<div class="form-group row">
+											<label for="firstname" class="col-lg-2 col-xl-2">FirstName
+												<span class="required text-danger">*</span>
+											</label>
 											<div class="col-lg-8 col-xl-8">
-												
-												<form:input type="text" class="form-control" id="deptname"
-													path="deptName" placeholder="" />
+												<form:input type="hidden" path="empId"/>
+												<form:input type="text" class="form-control" id="firstname"
+													path="firstName" placeholder="" />
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="description" class="col-lg-2 col-xl-2">Description</label>
+											<label for="lastname" class="col-lg-2 col-xl-2">LastName</label>
+											<div class="col-lg-8 col-xl-8">
+												<form:input type="text" class="form-control" id="lastname"
+													path="lastName" placeholder="" />
+											</div>
+
+											<div class="form-group row">
+
+												<div class="col-sm-10"></div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="emailid" class="col-lg-2 col-xl-2">Email
+												ID <span class="required text-danger">*</span>
+											</label>
+											<div class="col-lg-8 col-xl-8">
+												<form:input type="text" class="form-control" id="emailid"
+													placeholder="" path="emailId" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="designation" class="col-lg-2 col-xl-2">Designation
+												<span class="required text-danger">*</span>
+											</label>
 											<div class="col-lg-8 col-xl-8">
 												<form:input type="text" class="form-control"
-													id="description" path="description" placeholder="" />
+													id="designation" placeholder="" path="designation" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="skillset" class="col-lg-2 col-xl-2">Skill
+												Set <span class="required text-danger">*</span>
+											</label>
+											<div class="col-lg-8 col-xl-8">
+												<form:input type="text" class="form-control" id="skillset"
+													placeholder="" path="skillSet" />
 											</div>
 										</div>
 										<div class="row form-group">
-											<label for="active" class="col-lg-2 col-xl-2">Active</label>
+											<label for="gender" class="col-lg-2 col-xl-2">Gender</label>
 											<div class="col-lg-8 col-xl-8">
 												<div class="form-check">
-													<form:radiobutton path="active" id="active" value="true" />
-													<label class="checkbox-inline" for="active"> Active
+													<form:radiobutton path="gender" id="male" value="male" />
+													<label class="checkbox-inline" for="male"> Male </label>
+													<form:radiobutton path="gender" id="female" value="female" />
+													<label class="checkbox-inline" for="female"> Female
 													</label>
-													<form:radiobutton path="active" id="inactive" value="false" />
-													<label class="checkbox-inline" for="inactive">
-														Inactive </label>
 												</div>
 											</div>
 										</div>
-
-
-										<div class="text-center">
-
-											<button type="Reset" class="btn btn-primary col-sm-2">Reset</button>
-                                				
-											<input	type="submit" class="btn btn-primary col-sm-2" value="Submit"/>
-												
-
+										<div class="form-group row">
+											<label for="password" class="col-lg-2 col-xl-2">Password</label>
+											<div class="col-lg-8 col-xl-8">
+												<form:input type="text" class="form-control" id="password"
+													placeholder="" path="password" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="salary" class="col-lg-2 col-xl-2">Salary
+												<span class="required text-danger">*</span>
+											</label>
+											<div class="col-lg-8 col-xl-8">
+												<form:input type="text" class="form-control" id="salary"
+													placeholder="" path="salary" />
+											</div>
 
 										</div>
+										<div class="form-group row">
+											<label for="department" class="col=lg-2 col-xl-2">Department
+												<span class="required text-danger">*</span>
+											</label>
+											<div class="col-lg-8 col-xl-8">
+												<form:select path="deptId" class="form-control select-picker">
+
+													<form:options items="${departments}" />
+												</form:select>
+											</div>
+										</div>
+
+										<fieldset class="form-group">
+											<div class="row">
+
+												<div class="col-sm-10">
+													<div class="text-center">
+														<button type="Reset" class="btn btn-primary col-sm-2">Reset</button>
+														<input type="submit" class="btn btn-primary col-sm-2"
+															value="Update" />
+													</div>
+												</div>
+											</div>
+										</fieldset>
 									</form:form>
 								</div>
 							</div>
 						</div>
+
+
+
 					</div>
-
-					<!-- Content Row -->
-
 
 				</div>
 				<!-- /.container-fluid -->
@@ -202,7 +279,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright © Pallavi PR 2019</span>
+						<span>Copyright Â© Pallavi PR 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -218,6 +295,7 @@
 	<a class="scroll-to-top rounded" href="#page-top"
 		style="display: inline;"> <i class="fas fa-angle-up"></i>
 	</a>
+
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -227,5 +305,12 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="resources/js/sb-admin-2.min.js"></script>
+
+	<!-- Page level plugins -->
+	<script src="resources/vendor/chart.js/Chart.min.js"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="resources/js/demo/chart-area-demo.js"></script>
+	<script src="resources/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>

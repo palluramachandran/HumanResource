@@ -3,6 +3,8 @@ package com.hrms.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -41,9 +43,6 @@ public class EmployeeController {
 	public @ResponseBody List<EmployeeSkills> getEmployeeSkills()
 	{
 		List<EmployeeSkills> empSkillList=employeeService.getEmployeeSkills();
-		//ModelAndView model=new ModelAndView();
-		//model.addObject("empSkillList",empSkillList);
-	    //model.setViewName("EmployeeSkillCount");
 		return empSkillList;
 	}
 
@@ -59,13 +58,16 @@ public class EmployeeController {
 	}
 
 
-	@RequestMapping(value="/editEmployee/{empId}",method=RequestMethod.GET)
-	public ModelAndView editEmployee(@PathVariable int empId)
+	@RequestMapping(value="/editEmployee",method=RequestMethod.GET)
+	public ModelAndView editEmployee(HttpServletRequest request)
 	{
+		int empId=Integer.parseInt(request.getParameter("empId"));
 		Employee employee=employeeService.editEmployee(empId);
 		ModelAndView model=new ModelAndView();
 		model.addObject("employee", employee);
-		model.setViewName("EditEmployee");
+		Map<Integer,String> departmentMap=departmentsService.getDepartmentMap();
+		model.addObject("departments", departmentMap);
+		model.setViewName("UpdateEmployeeForm");
 		return model;
 	}
 
@@ -76,23 +78,24 @@ public class EmployeeController {
 		return "redirect:employeeConfiguration";
 	}
 
-	@RequestMapping(value="/deleteEmployee/{empId}",method=RequestMethod.GET)
-	public String deleteEmployee(@PathVariable int empId)
+	@RequestMapping(value="/deleteEmployee",method=RequestMethod.GET)
+	public String deleteEmployee(HttpServletRequest request)
 	{
+		int empId=Integer.parseInt(request.getParameter("empId"));
 		employeeService.deleteEmployee(empId);
 		return "redirect:/employeeConfiguration";
 
 	}
 
 	@RequestMapping(value="/addEmployee",method=RequestMethod.GET)
-	public ModelAndView addEmployee(Employee employee)
+	public ModelAndView addEmployee()
 	{
 		ModelAndView model=new ModelAndView();
 		model.setViewName("EmployeeForm");
-		//Map<Integer,String> departmentMap=departmentsService.getDepartmentMap();
-		//model.addObject("departments", departmentMap);
-		Employee employees=new Employee();
-		model.addObject("employees",employees);
+		Map<Integer,String> departmentMap=departmentsService.getDepartmentMap();
+		model.addObject("departments", departmentMap);
+		Employee employee=new Employee();
+		model.addObject("employee",employee);
 		return model;
 
 	}

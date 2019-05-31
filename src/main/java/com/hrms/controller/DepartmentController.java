@@ -1,14 +1,9 @@
 package com.hrms.controller;
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hrms.dao.DepartmentsDAO;
 import com.hrms.model.Department;
 import com.hrms.model.DepartmentEmpDetails;
 import com.hrms.model.DepartmentSkills;
-import com.hrms.model.EmployeeSkills;
 import com.hrms.service.DepartmentsService;
 
 
@@ -78,9 +71,6 @@ public class DepartmentController {
 	public @ResponseBody List<DepartmentSkills> getDepartmentSkills()
 	{
 		List<DepartmentSkills> departmentSkillList=departmentsService.getDepartmentSkills();
-		//ModelAndView model=new ModelAndView();
-		//model.addObject("departmentSkillList",departmentSkillList);
-		//model.setViewName("DepartmentSkillCount");
 		return departmentSkillList;
 	}
 
@@ -93,14 +83,17 @@ public class DepartmentController {
 		model.setViewName("DepartmentConfiguration");
 		return model;
 	}
-	@RequestMapping(value="/editDepartment/{deptId}",method=RequestMethod.GET)
-	public ModelAndView  editDepartment(@PathVariable int deptId) 
+	
+	@RequestMapping(value="/editDepartment",method=RequestMethod.GET)
+	public ModelAndView editDepartment(HttpServletRequest request)
 	{
-		Department department=departmentsService.editDepartment(deptId);
+		int deptId=Integer.parseInt(request.getParameter("deptId"));
 		ModelAndView model=new ModelAndView();
-		model.addObject("department",department);
 		model.setViewName("UpdateDepartmentForm");
+		Department departments=departmentsService.editDepartment(deptId);
+		model.addObject("department",departments);
 		return model;
+		
 	}
 
 	@RequestMapping(value="/updateDepartment",method=RequestMethod.POST)
@@ -110,21 +103,22 @@ public class DepartmentController {
 		return "redirect:departmentConfiguration";
 	}
 
-	@RequestMapping(value="/deleteDepartment/{deptId}",method=RequestMethod.GET)
-	public String deleteDepartment(@PathVariable int deptId)
+	@RequestMapping(value="/deleteDepartment",method=RequestMethod.GET)
+	public String deleteDepartment(HttpServletRequest request)
 	{
+		int deptId=Integer.parseInt(request.getParameter("deptId"));
 		departmentsService.deleteDepartment(deptId);
 		return "redirect:/departmentConfiguration";
 	}
 
 	@RequestMapping(value="/addDepartment",method=RequestMethod.GET)
-	public ModelAndView addDepartment(Department department)
+	public ModelAndView addDepartment()
 	{
+		
 		ModelAndView model=new ModelAndView();
-		//model.setViewName("AddDepartment");
 		model.setViewName("DepartmentForm");
 		Department departments=new Department();
-		model.addObject("departments",departments);
+		model.addObject("department",departments);
 		return model;
 		
 	}

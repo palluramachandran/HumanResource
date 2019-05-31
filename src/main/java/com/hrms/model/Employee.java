@@ -8,7 +8,7 @@ public class Employee {
 	String emailId;
 	String designation;
 	String skillSet;
-	String gender;
+	String gender="male";
 	String password;
 	int salary;
 	
