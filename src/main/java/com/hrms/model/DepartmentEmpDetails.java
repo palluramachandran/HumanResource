@@ -1,5 +1,10 @@
 package com.hrms.model;
 
+/**
+ * Model for returning Department Graphs
+ * @author Pallavi
+ *
+ */
 public class DepartmentEmpDetails {
 	String deptName;
 	int noOfEmployees;

@@ -6,6 +6,11 @@ import java.util.List;
 
 import com.hrms.model.Department;
 
+/**
+ * 
+ * @author Pallavi
+ *
+ */
 public interface DepartmentsDAO {
 
 	public List<DepartmentEmpDetails> getDepartmentEmpDetails();

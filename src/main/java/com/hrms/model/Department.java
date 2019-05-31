@@ -1,5 +1,10 @@
 package com.hrms.model;
 
+/**
+ * Model for all department operations
+ * @author Pallavi
+ *
+ */
 public class Department {
 	int deptId;
 	String deptName;

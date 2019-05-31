@@ -7,6 +7,11 @@ import com.hrms.model.Department;
 import com.hrms.model.DepartmentEmpDetails;
 import com.hrms.model.DepartmentSkills;
 
+/**
+ * 
+ * @author Pallavi
+ *
+ */
 public interface DepartmentsService {
 
 	public List<DepartmentEmpDetails> getDepartmentEmpDetails();

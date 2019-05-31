@@ -1,5 +1,10 @@
 package com.hrms.model;
 
+/**
+ * Model for returning data for Employee skills graph
+ * @author Pallavi
+ *
+ */
 public class EmployeeSkills {
 
 	String skill;

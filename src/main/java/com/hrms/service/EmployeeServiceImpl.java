@@ -9,6 +9,11 @@ import com.hrms.dao.EmployeesDAO;
 import com.hrms.model.Employee;
 import com.hrms.model.EmployeeSkills;
 
+/**
+ * All Employee specific service layer code
+ * @author Pallavi
+ *
+ */
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeesDAO employeesDAO;

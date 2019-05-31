@@ -11,12 +11,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	/**
+	 * For configuring users
+	 * @param auth
+	 * @throws Exception
+	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()
                    .withUser("admin").password("admin").roles("USER");
 	}
-
+	
+	/**
+	 * Handling the security
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 

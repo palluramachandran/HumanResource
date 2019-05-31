@@ -11,6 +11,12 @@ import com.hrms.dao.DepartmentsDAO;
 import com.hrms.model.Department;
 import com.hrms.model.DepartmentEmpDetails;
 import com.hrms.model.DepartmentSkills;
+
+/**
+ * All Deparment specific service layer code
+ * @author Pallavi
+ *
+ */
 @Service
 public class DepartmentsServiceImpl implements DepartmentsService {
 

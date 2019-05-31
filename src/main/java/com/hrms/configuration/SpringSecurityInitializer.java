@@ -4,6 +4,9 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 
 public class SpringSecurityInitializer extends AbstractSecurityWebApplicationInitializer {
 
+	/**
+	 * For loading security config
+	 */
 	public SpringSecurityInitializer() {
         super(SecurityConfig.class);
     }

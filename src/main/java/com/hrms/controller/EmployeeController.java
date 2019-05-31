@@ -8,17 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hrms.model.Department;
 import com.hrms.model.Employee;
 import com.hrms.model.EmployeeSkills;
 import com.hrms.service.DepartmentsService;
 import com.hrms.service.EmployeeService;
+
+/**
+ * All employee specific mappings
+ * @author Pallavi
+ *
+ */
 @Controller
 public class EmployeeController {
 
@@ -38,6 +42,10 @@ public class EmployeeController {
 	}
 	
 	
+	/**
+	 * Employee skill chart json data 
+	 * @return
+	 */
 
 	@RequestMapping(value="/employeeSkills",method=RequestMethod.GET,headers="Accept=application/json")
 	public @ResponseBody List<EmployeeSkills> getEmployeeSkills()
@@ -45,7 +53,11 @@ public class EmployeeController {
 		List<EmployeeSkills> empSkillList=employeeService.getEmployeeSkills();
 		return empSkillList;
 	}
-
+	
+	/**
+	 * Employee details table
+	 * @return
+	 */
 	@RequestMapping(value="/employeeConfiguration",method=RequestMethod.GET)
 	public ModelAndView getEmployees()
 	{
@@ -57,7 +69,10 @@ public class EmployeeController {
 		
 	}
 
-
+	/**
+	 * Edit employee 
+	 * @return
+	 */
 	@RequestMapping(value="/editEmployee",method=RequestMethod.GET)
 	public ModelAndView editEmployee(HttpServletRequest request)
 	{
@@ -70,6 +85,11 @@ public class EmployeeController {
 		model.setViewName("UpdateEmployeeForm");
 		return model;
 	}
+	
+	/**
+	 * Update employee
+	 * @return
+	 */
 
 	@RequestMapping(value="/updateEmployee",method=RequestMethod.POST)
 	public String updateEmployee(@ModelAttribute Employee employee)
@@ -78,6 +98,11 @@ public class EmployeeController {
 		return "redirect:employeeConfiguration";
 	}
 
+	
+	/**
+	 * Delete employee
+	 * @return
+	 */
 	@RequestMapping(value="/deleteEmployee",method=RequestMethod.GET)
 	public String deleteEmployee(HttpServletRequest request)
 	{
@@ -86,7 +111,11 @@ public class EmployeeController {
 		return "redirect:/employeeConfiguration";
 
 	}
-
+	
+	/**
+	 * Add employee
+	 * @return
+	 */
 	@RequestMapping(value="/addEmployee",method=RequestMethod.GET)
 	public ModelAndView addEmployee()
 	{
@@ -100,6 +129,10 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * Submit employee 
+	 * @return
+	 */
 	@RequestMapping(value="/submitEmployee",method=RequestMethod.POST)
 	public String submitEmployee(@ModelAttribute Employee employee) 
 	{

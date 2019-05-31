@@ -1,5 +1,10 @@
 package com.hrms.model;
 
+/**
+ * Model for all Employee specific operations
+ * @author Pallavi
+ *
+ */
 public class Employee {
 	int deptId;
 	int empId;

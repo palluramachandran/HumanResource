@@ -5,6 +5,11 @@ import java.util.List;
 
 import com.hrms.model.Employee;
 
+/**
+ * 
+ * @author Pallavi
+ *
+ */
 public interface EmployeesDAO {
 	public List<EmployeeSkills> getEmployeeSkills();
 	public List<Employee> getEmployees();

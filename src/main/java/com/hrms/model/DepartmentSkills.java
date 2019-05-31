@@ -1,5 +1,10 @@
 package com.hrms.model;
 
+/**
+ * Model for Department Skills graph
+ * @author Pallavi
+ *
+ */
 public class DepartmentSkills {
 	String deptName;
 	String skill;

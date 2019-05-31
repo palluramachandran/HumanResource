@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-
+<!-- saved from url=(0076)file:///C:/Users/Pallavi/Desktop/Project%20HTMLS/HomeV9%20-%20Analytics.html -->
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -32,6 +32,10 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
+		<!-- Sidebar -->
+
+		<!-- End of Sidebar -->
+
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 
@@ -48,21 +52,33 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
+					<!-- Topbar Search -->
+
+
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav">
-						<!-- Analytics button -->
+
+						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+
+
+						<!-- Nav Item - Alerts -->
 						<li class="nav-item active no-arrow mx-1 bg-gradient-primary">
 							<a class="nav-link"
 							href="analytics">
-								<i class="fas fa-fw fa-chart-area"></i> 
+								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Alerts -->
 								Analytics
-						</a> 
+						</a> <!-- Dropdown - Alerts -->
 
 						</li>
 
+						<!-- Nav Item - Messages -->
+
+
 						<div class="topbar-divider d-none d-sm-block"></div>
 
-						<!-- Nav Item - Configuration  -->
+						<!-- Nav Item - User Information -->
+
+
 						<li class="nav-item no-arrow mx-1"><a class="nav-link"
 							href="departmentConfiguration">
 								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
@@ -188,7 +204,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright © Pallavi PR 2019</span>
+						<span>Copyright Â© Pallavi PR 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -217,13 +233,11 @@
 	<script src="resources/js/sb-admin-2.min.js"></script>
 
 	<!-- Page level plugins for Chart-->
+	<script src="resources/vendor/chart.js/Chart.min.js"></script>
 	<script src="resources/js/highcharts.js"></script>
 	<script src="resources/js/highcharts-3d.js"></script>
-	
-	<!-- Page level plugins for table -->
-	<script src="resources/vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+	
 	<script type="text/javascript">
 	
 	Highcharts.setOptions({
@@ -266,7 +280,6 @@
 			});
 	});
 		  //Department Chart-End
-		  
 		  //skill Chart-start
 		  $(document).ready(function(){
 		  var processed_json = new Array();
@@ -319,7 +332,7 @@
 		                type: "column"
 		            },
 		            title: {
-		                text: "EmployeeSkill And No of Employees"
+		                text: "EmployeeSkill And Skill Count"
 		            },
 		            xAxis: {
 		                categories : categories_json,
@@ -330,11 +343,11 @@
 		            },
 		            yAxis: {
 		                title: {
-		                    text: "No. of Employees"
+		                    text: "Skills Count"
 		                }
 		            },
 		            series: [{
-		            	name: 'No of Employees',
+		            	name: 'Skills Count',
 		                data: processed_json
 		            }]
 		        }); 
@@ -343,11 +356,20 @@
 		    
 		  
 		  //Department Level Skill Chart-end
+		  //DepratmentDetalils chart-start
 		  
-// 		 $(document).ready(function() {
-// 			$('#dataTable').DataTable();
-// 		});
+	
+
+		
+		$(document).ready(function() {
+			$('#dataTable').DataTable();
+		});
 		    
+		  
+	
+	
 	</script>
+
+
 </body>
 </html>

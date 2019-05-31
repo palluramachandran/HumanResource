@@ -13,6 +13,11 @@ import com.hrms.model.Department;
 import com.hrms.model.DepartmentEmpDetails;
 import com.hrms.model.DepartmentSkills;
 
+/**
+ * All DAO method specific to departments
+ * @author Pallavi
+ *
+ */
 @Repository
 public class DepartmentsDAOImpl implements DepartmentsDAO {
 
@@ -119,8 +124,5 @@ public class DepartmentsDAOImpl implements DepartmentsDAO {
 				"values(employee.dept_sequence.nextval,?,?,?)";
 		jdbcTemplate.update(sql,department.getDeptName(),department.getDescription(),department.isActive()?"Y":"N");
 	}
-
-	
-	
 
 }
