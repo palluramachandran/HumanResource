@@ -12,6 +12,12 @@ import org.springframework.stereotype.Repository;
 import com.hrms.model.Department;
 import com.hrms.model.Employee;
 import com.hrms.model.EmployeeSkills;
+
+/**
+ *All DAO method specific to employees
+ * @author Pallavi
+ *
+ */
 @Repository
 public class EmployeesDAOImpl implements EmployeesDAO {
 	public JdbcTemplate jdbcTemplate;

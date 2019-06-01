@@ -143,7 +143,7 @@
 									<form:form modelAttribute="department" method="post"
 										action="submitDepartment">
 										<div class="form-group row">
-											<label for="name" class="col-lg-2 col-xl-2">Name <span
+											<label for="name" class="col-lg-2 col-xl-2" >Name <span
 												class="required text-danger">*</span></label>
 
 											<div class="col-lg-8 col-xl-8">
@@ -156,7 +156,7 @@
 											<label for="description" class="col-lg-2 col-xl-2">Description</label>
 											<div class="col-lg-8 col-xl-8">
 												<form:input type="text" class="form-control"
-													id="description" path="description" placeholder="" />
+													id="description" min="3" required="text " data-error-msg="must enter your name? " path="description" placeholder="" />
 											</div>
 										</div>
 										<div class="row form-group">
