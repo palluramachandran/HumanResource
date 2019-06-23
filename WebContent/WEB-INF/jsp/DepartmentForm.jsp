@@ -22,7 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<body id="page-top"  class="sidebar-toggled">
+<body id="page-top" class="sidebar-toggled">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -57,6 +57,10 @@
 			<li class="nav-item"><a class="nav-link"
 				href="employeeConfiguration"> <i class="fas fa-fw fa-users"></i>
 					<span>Employees</span>
+			</a></li>
+			<li class="nav-item "><a class="nav-link"
+				href="employeeRatingConfiguration"> <i
+					class="fa fa-star"></i> <span>EmployeeRating</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -113,8 +117,8 @@
 						<div class="input-group">
 
 							<div class="input-group-append">
-								<a class="btn btn-primary" href="logout">
-									<span>Logout</span> <i class="fas fa-sign-out-alt fa-sm"></i>
+								<a class="btn btn-primary" href="logout"> <span>Logout</span>
+									<i class="fas fa-sign-out-alt fa-sm"></i>
 								</a>
 							</div>
 						</div>
@@ -140,23 +144,29 @@
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
-									<form:form modelAttribute="department" method="post"
+									<form:form modelAttribute="department"  onsubmit="return fnValidate();" method="post"
 										action="submitDepartment">
+										
 										<div class="form-group row">
-											<label for="name" class="col-lg-2 col-xl-2" >Name <span
+											<label for="name" class="col-lg-2 col-xl-2">Name <span
 												class="required text-danger">*</span></label>
 
-											<div class="col-lg-8 col-xl-8">
-												
-												<form:input type="text" class="form-control" id="deptname"
+											<div class="col-lg-6 col-xl-6">
+
+												<form:input type="text" class="form-control "   id="deptname"
 													path="deptName" placeholder="" />
+
+												</div>
+												<div class="col-lg-4 col-xl-4 ">
+													<form:errors path="deptName" class="form-control alert alert-warning"/>
 											</div>
+
 										</div>
 										<div class="form-group row">
 											<label for="description" class="col-lg-2 col-xl-2">Description</label>
 											<div class="col-lg-8 col-xl-8">
 												<form:input type="text" class="form-control"
-													id="description" min="3" required="text " data-error-msg="must enter your name? " path="description" placeholder="" />
+													id="description" path="description" placeholder="" />
 											</div>
 										</div>
 										<div class="row form-group">
@@ -177,9 +187,10 @@
 										<div class="text-center">
 
 											<button type="Reset" class="btn btn-primary col-sm-2">Reset</button>
-                                				
-											<input	type="submit" class="btn btn-primary col-sm-2" value="Submit"/>
-												
+
+											<input type="submit" class="btn btn-primary col-sm-2"
+												value="Submit" />
+
 
 
 										</div>
@@ -227,5 +238,18 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="resources/js/sb-admin-2.min.js"></script>
+	<script>
+	function fnValidate()
+	{
+		
+		var deptname= $("#deptname").val();
+		if(deptname=='')
+		{
+			alert(" Name is required information.");
+			return false;
+		}
+	}
+	</script>
+
 </body>
 </html>

@@ -22,7 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<body id="page-top"  class="sidebar-toggled">
+<body id="page-top" class="sidebar-toggled">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -57,6 +57,10 @@
 			<li class="nav-item"><a class="nav-link"
 				href="employeeConfiguration"> <i class="fas fa-fw fa-users"></i>
 					<span>Employees</span>
+			</a></li>
+			<li class="nav-item "><a class="nav-link"
+				href="employeeRatingConfiguration"> <i
+					class="fas fa-fw fa-users"></i> <span>EmployeeRating</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -113,8 +117,8 @@
 						<div class="input-group">
 
 							<div class="input-group-append">
-								<a class="btn btn-primary" href="logout">
-									<span>Logout</span> <i class="fas fa-sign-out-alt fa-sm"></i>
+								<a class="btn btn-primary" href="logout"> <span>Logout</span>
+									<i class="fas fa-sign-out-alt fa-sm"></i>
 								</a>
 							</div>
 						</div>
@@ -142,12 +146,13 @@
 								<div class="card-body">
 									<form:form modelAttribute="department" method="post"
 										action="updateDepartment">
+
 										<div class="form-group row">
 											<label for="name" class="col-lg-2 col-xl-2">Name <span
 												class="required text-danger">*</span></label>
 
 											<div class="col-lg-8 col-xl-8">
-												<form:input type="hidden" path="deptId"/>
+												<form:input type="hidden" path="deptId" />
 												<form:input type="text" class="form-control" id="deptname"
 													path="deptName" placeholder="" />
 											</div>
@@ -177,11 +182,9 @@
 										<div class="text-center">
 
 											<button type="Reset" class="btn btn-primary col-sm-2">Reset</button>
-                                				
-											<input type="submit" class="btn btn-primary col-sm-2" value="Update"/> 
-													
 
-
+											<input type="submit" class="btn btn-primary col-sm-2"
+												value="Update" />
 										</div>
 									</form:form>
 								</div>
@@ -227,5 +230,6 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="resources/js/sb-admin-2.min.js"></script>
+
 </body>
 </html>

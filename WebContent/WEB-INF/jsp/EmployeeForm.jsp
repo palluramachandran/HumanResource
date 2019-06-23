@@ -22,7 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<body id="page-top"  class="sidebar-toggled">
+<body id="page-top" class="sidebar-toggled">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -61,7 +61,10 @@
 				href="employeeConfiguration"> <i class="fas fa-fw fa-users"></i>
 					<span>Employees</span>
 			</a></li>
-
+			<li class="nav-item "><a class="nav-link"
+				href="employeeRatingConfiguration"> <i
+					class="fa fa-star"></i> <span>EmployeeRating</span>
+			</a></li>
 
 
 			<!-- Divider -->
@@ -126,8 +129,8 @@
 						<div class="input-group">
 
 							<div class="input-group-append">
-								<a class="btn btn-primary" href="logout">
-									<span>Logout</span> <i class="fas fa-sign-out-alt fa-sm"></i>
+								<a class="btn btn-primary" href="logout"> <span>Logout</span>
+									<i class="fas fa-sign-out-alt fa-sm"></i>
 								</a>
 							</div>
 						</div>
@@ -155,23 +158,29 @@
 								<!-- Card Body -->
 								<div class="card-body">
 
-									<form:form modelAttribute="employee" method="post"
+									<form:form modelAttribute="employee"
+										onsubmit="return fnValidate();" method="post"
 										action="submitEmployee">
 
 										<div class="form-group row">
 											<label for="firstname" class="col-lg-2 col-xl-2">FirstName
 												<span class="required text-danger">*</span>
 											</label>
-											<div class="col-lg-8 col-xl-8">
+											<div class="col-lg-6 col-xl-6">
 												<form:input type="text" class="form-control" id="firstname"
 													path="firstName" placeholder="" />
+											</div>
+											<div class="col-lg-4 col-xl-4 ">
+												<form:errors path="firstName"
+													class="form-control alert alert-warning" />
 											</div>
 										</div>
 										<div class="form-group row">
 											<label for="lastname" class="col-lg-2 col-xl-2">LastName</label>
-											<div class="col-lg-8 col-xl-8">
+											<div class="col-lg-6 col-xl-6">
 												<form:input type="text" class="form-control" id="lastname"
 													path="lastName" placeholder="" />
+
 											</div>
 
 											<div class="form-group row">
@@ -183,32 +192,44 @@
 											<label for="emailid" class="col-lg-2 col-xl-2">Email
 												ID <span class="required text-danger">*</span>
 											</label>
-											<div class="col-lg-8 col-xl-8">
+											<div class="col-lg-6 col-xl-6">
 												<form:input type="text" class="form-control" id="emailid"
 													placeholder="" path="emailId" />
+
+											</div>
+											<div class="col-lg-4 col-xl-4 ">
+												<form:errors path="emailId"
+													class="form-control alert alert-warning" />
 											</div>
 										</div>
 										<div class="form-group row">
 											<label for="designation" class="col-lg-2 col-xl-2">Designation
 												<span class="required text-danger">*</span>
 											</label>
-											<div class="col-lg-8 col-xl-8">
+											<div class="col-lg-6 col-xl-6">
 												<form:input type="text" class="form-control"
 													id="designation" placeholder="" path="designation" />
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="skillset" class="col-lg-2 col-xl-2">Skill
+											<label for="skillSet" class="col-lg-2 col-xl-2">Skill
 												Set <span class="required text-danger">*</span>
 											</label>
-											<div class="col-lg-8 col-xl-8">
-												<form:input type="text" class="form-control" id="skillset"
-													placeholder="" path="skillSet" />
+											<div class="col-lg-6 col-xl-6">
+												<div class="checkbox-group required">
+													<label class="checkbox-inline"> <form:checkbox
+															path="skillSet" id="skillSet" value="java" />Java
+													</label> <label class="checkbox-inline"> <form:checkbox
+															path="skillSet" id="skillSet" value="spring" />Spring
+													</label> <label class="checkbox-inline"> <form:checkbox
+															path="skillSet" id="skillSet" value="hibernate" />Hibernate
+													</label>
+												</div>
 											</div>
 										</div>
 										<div class="row form-group">
 											<label for="gender" class="col-lg-2 col-xl-2">Gender</label>
-											<div class="col-lg-8 col-xl-8">
+											<div class="col-lg-6 col-xl-6">
 												<div class="form-check">
 													<form:radiobutton path="gender" id="male" value="male" />
 													<label class="checkbox-inline" for="male"> Male </label>
@@ -220,18 +241,18 @@
 										</div>
 										<div class="form-group row">
 											<label for="password" class="col-lg-2 col-xl-2">Password</label>
-											<div class="col-lg-8 col-xl-8">
-												<form:input type="text" class="form-control" id="password"
-													placeholder="" path="password" />
+											<div class="col-lg-6 col-xl-6">
+												<form:input type="password" class="form-control"
+													id="password" placeholder="" path="password" />
 											</div>
 										</div>
 										<div class="form-group row">
 											<label for="salary" class="col-lg-2 col-xl-2">Salary
 												<span class="required text-danger">*</span>
 											</label>
-											<div class="col-lg-8 col-xl-8">
-												<form:input type="text" class="form-control" id="salary"
-													placeholder="" path="salary" />
+											<div class="col-lg-6 col-xl-6">
+												<form:input type="number" class="form-control"
+													required="text" id="salary" placeholder="" path="salary" />
 											</div>
 
 										</div>
@@ -239,8 +260,9 @@
 											<label for="department" class="col=lg-2 col-xl-2">Department
 												<span class="required text-danger">*</span>
 											</label>
-											<div class="col-lg-8 col-xl-8">
-												<form:select path="deptId" class="form-control custom-select">
+											<div class="col-lg-6 col-xl-6">
+												<form:select path="deptId"
+													class="form-control custom-select">
 
 													<form:options items="${departments}" />
 												</form:select>
@@ -257,6 +279,7 @@
 														<button type="Reset" class="btn btn-primary col-sm-2">Reset</button>
 														<input type="submit" class="btn btn-primary col-sm-2"
 															value="Submit" />
+
 													</div>
 												</div>
 											</div>
@@ -313,5 +336,38 @@
 	<!-- Page level custom scripts -->
 	<script src="resources/js/demo/chart-area-demo.js"></script>
 	<script src="resources/js/demo/chart-pie-demo.js"></script>
+
+	<script>
+		function fnValidate() {
+
+			var firstname = $("#firstname").val();
+			if (firstname == '') {
+				alert("First Name is required information.");
+				return false;
+			} else if (firstname.length() > 15) {
+				alert("First Name should be less than 15 charecters.");
+				return false;
+			}
+			return true;
+		}
+		function fnValidate() {
+
+			var designation = $("#designation").val();
+			if (designation == '') {
+				alert("Designation need to be filled")
+				return false;
+			}
+			return true;
+		}
+		function fnValidate() {
+
+			var salary = $("#salary").val();
+			if (salary == '') {
+				alert("salary need to be filled")
+				return false;
+			}
+			return true;
+		}
+	</script>
 </body>
 </html>

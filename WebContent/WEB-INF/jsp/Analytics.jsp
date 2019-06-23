@@ -123,7 +123,7 @@
 								</div>
 							</div>
 						</div>
-
+				
 						<!-- Departments Details Table-->
 						<div class="col-xl-6 col-lg-6 mb-4">
 					<div class="card shadow mb-4 h-100">
@@ -194,6 +194,32 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+											
+<!-- --countRating pie chart start -->
+<div class="col-xl-6 col-lg-6">
+							<div class="card shadow mb-4">
+								<!-- Card Header-->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Employee
+										Rating</h6>
+
+								</div>
+								<!-- Departments Card Body -->
+								<div class="card-body">
+									<!-- Departments Overview Pie Chart -->
+									<div id="highChartsEmployeeRating"></div>
+								</div>
+							</div>
+						</div>
+						
+				<!-- --countRating pie chart end -->
+					
+					
+					
+					</div>
+					
 				</div>
 				<!-- /.container-fluid -->
 
@@ -356,12 +382,44 @@
 		    
 		  
 		  //Department Level Skill Chart-end
-		  //DepratmentDetalils chart-start
 		  
-	
-
-		
-		$(document).ready(function() {
+		  //rating chart -start
+		   $(document).ready(function(){
+			var rating_json = new Array();
+		    $.getJSON('http://localhost:8089/HumanResource/countOfEmployeeRating', function(data) {
+		        // Populate series
+		        for (i = 0; i < data.length; i++){
+		        	  rating_json.push([data[i].rating,data[i].noOfEmployees]);
+		          }
+		        $('#highChartsEmployeeRating').highcharts({
+		            chart: {
+		                type: "column"
+		            },
+		            title: {
+		                text: "Rating And No of Employees"
+		            },
+		            xAxis: {
+		                type: 'category',
+		                allowDecimals: false,
+		                title: {
+		                    text: "Rating"
+		                }
+		            },
+		            yAxis: {
+		                title: {
+		                    text: "No. of Employees"
+		                }
+		            },
+		            series: [{
+		                name: 'No of Employees',
+		                data: rating_json
+		            }]
+		        }); 
+			});
+	});
+		  //rating chart-end
+		  
+		  $(document).ready(function() {
 			$('#dataTable').DataTable();
 		});
 		    

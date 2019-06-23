@@ -1,12 +1,15 @@
 package com.hrms.model;
 
+import javax.validation.constraints.Size;
+
 /**
  * Model for all department operations
  * @author Pallavi
  *
  */
 public class Department {
-	int deptId;
+	private int deptId;
+	@Size(min=2,max=15,message="lenghth should be 2-15")
 	String deptName;
 	String description;
 	boolean active=true;

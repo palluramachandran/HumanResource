@@ -1,11 +1,14 @@
 package com.hrms.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -118,6 +121,7 @@ public class DepartmentController {
 	public ModelAndView editDepartment(HttpServletRequest request)
 	{
 		int deptId=Integer.parseInt(request.getParameter("deptId"));
+		
 		ModelAndView model=new ModelAndView();
 		model.setViewName("UpdateDepartmentForm");
 		Department departments=departmentsService.editDepartment(deptId);
@@ -133,6 +137,7 @@ public class DepartmentController {
 	@RequestMapping(value="/updateDepartment",method=RequestMethod.POST)
 	public String updateDepartment(@ModelAttribute Department department)
 	{
+		
 		departmentsService.updateDepartment(department);
 		return "redirect:departmentConfiguration";
 	}
@@ -142,12 +147,26 @@ public class DepartmentController {
 	 * @return
 	 */
 	@RequestMapping(value="/deleteDepartment",method=RequestMethod.GET)
-	public String deleteDepartment(HttpServletRequest request)
+	public ModelAndView deleteDepartment(HttpServletRequest request)
 	{
 		int deptId=Integer.parseInt(request.getParameter("deptId"));
-		departmentsService.deleteDepartment(deptId);
-		return "redirect:/departmentConfiguration";
+		boolean isDeleted = departmentsService.deleteDepartment(deptId);
+		List<Department> departmentList=departmentsService.getDepartments();
+		ModelAndView model=new ModelAndView();
+		model.addObject("departmentList", departmentList);
+		
+		if(isDeleted) {
+		model.addObject("deleteMsg", "Deleted Successfully");
+		}else
+		{
+			model.addObject("deleteMsg","Department cannot be deleted due to dependency.");
+		}
+		model.setViewName("DepartmentConfiguration");
+		return model;
+		//return "redirect:/departmentConfiguration";
 	}
+	
+	
 
 	/**
 	 * Add department
@@ -170,10 +189,26 @@ public class DepartmentController {
 	 * @return
 	 */
 	@RequestMapping(value="/submitDepartment",method=RequestMethod.POST)
-	public String submitDepartment(@ModelAttribute Department department)
+	public ModelAndView submitDepartment(@Validated @ModelAttribute Department department,BindingResult bindingresult)
 	{
+		
+		if(bindingresult.hasErrors())
+		{
+			ModelAndView model=new ModelAndView();
+			model.setViewName("DepartmentForm");
+			Map<Integer,String> departmentMap=departmentsService.getDepartmentMap();
+			model.addObject("departments", departmentMap);
+			
+			return model;
+		}
 		departmentsService.submitDepartment(department);
-		return "redirect:departmentConfiguration";
+		List<Department> departmentList=departmentsService.getDepartments();
+		ModelAndView model=new ModelAndView();
+		model.addObject("departmentList", departmentList);
+		model.addObject("msg", "department added succesfully");
+		model.setViewName("DepartmentConfiguration");
+		//return "redirect:departmentConfiguration";
+		return model;
 	}
 
 

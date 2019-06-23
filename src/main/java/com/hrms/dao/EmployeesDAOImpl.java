@@ -9,8 +9,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.hrms.model.Department;
+import com.hrms.model.CountOfEmployeeRating;
 import com.hrms.model.Employee;
+import com.hrms.model.EmployeeRating;
+import com.hrms.model.EmployeeRatingDetails;
 import com.hrms.model.EmployeeSkills;
 
 /**
@@ -111,7 +113,5 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 		
 		
 	}
-
-	
 
 }

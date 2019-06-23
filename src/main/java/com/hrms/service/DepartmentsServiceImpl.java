@@ -68,16 +68,29 @@ public class DepartmentsServiceImpl implements DepartmentsService {
 	@Override
 	public void updateDepartment(Department department) {
 		departmentsDAO.updateDepartment(department);
-
 	}
+	
 
 	@Override
-	public void deleteDepartment(int deptId) {
-		departmentsDAO.deleteDepartment(deptId);
-
+	public boolean deleteDepartment(int deptId) {
+		int count = departmentsDAO.getEmployeeCount(deptId);
+		System.out.println("*********Count"+count);
+		if(count <= 0)
+		{
+			departmentsDAO.deleteDepartment(deptId);
+			return true;
+		}
+				
+		return false;
+}
+	public int getEmployeeCount(int deptId) {
+		return departmentsDAO.getEmployeeCount(deptId);
+		
 	}
-
-	
+	public int getInactiveEmployee(int deptId)
+	{
+		return departmentsDAO.getInactiveEmployee(deptId);
+	}
 	@Override
 	public void submitDepartment(Department department) {
 		departmentsDAO.submitDepartment(department);

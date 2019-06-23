@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -104,11 +106,17 @@ public class EmployeeController {
 	 * @return
 	 */
 	@RequestMapping(value="/deleteEmployee",method=RequestMethod.GET)
-	public String deleteEmployee(HttpServletRequest request)
+	public ModelAndView deleteEmployee(HttpServletRequest request)
 	{
 		int empId=Integer.parseInt(request.getParameter("empId"));
 		employeeService.deleteEmployee(empId);
-		return "redirect:/employeeConfiguration";
+		List<Employee> employee=employeeService.getEmployees();
+		ModelAndView model=new ModelAndView();
+		model.addObject("deleteMsg", "employee deleted Successfully");
+		model.addObject("employee", employee);
+		model.setViewName("EmployeeConfiguration");
+		return model;
+		//return "redirect:/employeeConfiguration";
 
 	}
 	
@@ -134,9 +142,27 @@ public class EmployeeController {
 	 * @return
 	 */
 	@RequestMapping(value="/submitEmployee",method=RequestMethod.POST)
-	public String submitEmployee(@ModelAttribute Employee employee) 
+	public ModelAndView submitEmployee(@Validated @ModelAttribute Employee employee,BindingResult bindingresult) 
 	{
+		if(bindingresult.hasErrors())
+		{
+			ModelAndView model=new ModelAndView();
+			model.setViewName("EmployeeForm");
+			Map<Integer,String> departmentMap=departmentsService.getDepartmentMap();
+			model.addObject("departments", departmentMap);
+			//model.addObject("employee",employee);
+			return model;
+		}
 		employeeService.submitEmployee(employee);
-		return "redirect:employeeConfiguration";
+		List<Employee> employees=employeeService.getEmployees();
+		ModelAndView model=new ModelAndView();
+		model.addObject("employee", employees);
+		model.addObject("addMsg","employee added successfully");
+		model.setViewName("EmployeeConfiguration");
+		return model;
+		
+		//return new ModelAndView("redirect:employeeConfiguration");
 	}
+	
+	
 }

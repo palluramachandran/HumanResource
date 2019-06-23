@@ -1,5 +1,10 @@
 package com.hrms.model;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Model for all Employee specific operations
  * @author Pallavi
@@ -8,8 +13,11 @@ package com.hrms.model;
 public class Employee {
 	int deptId;
 	int empId;
+	@Size(min=3,max=30,message="length should be 3-15")
 	String firstName;
 	String lastName;
+	@Email(message="please enter  valid format example@gmail.com")
+	@NotEmpty
 	String emailId;
 	String designation;
 	String skillSet;

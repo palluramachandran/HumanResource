@@ -18,8 +18,10 @@ public interface DepartmentsDAO {
 	public List<Department> getDepartments();
 	public Department  editDepartment(int deptId);
 	public void updateDepartment(Department department);
-	public void deleteDepartment(int deptId);
+	public boolean deleteDepartment(int deptId);
 	public void submitDepartment(Department department);
+	public int getEmployeeCount(int deptId);
+	public int getInactiveEmployee(int deptId);
 
 
 

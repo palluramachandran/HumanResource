@@ -113,9 +113,29 @@ public class DepartmentsDAOImpl implements DepartmentsDAO {
 	}
 
 	@Override
-	public void deleteDepartment(int deptId) {
+	public boolean deleteDepartment(int deptId) {
+		
+		
 		String sql="delete from employee.departments where dept_id=? ";
 		jdbcTemplate.update(sql,deptId);
+		return true;
+	}
+	@Override
+	public int getEmployeeCount(int deptId)
+	{ 
+		String sql="select count(*) from employee.employees where dept_id=? ";
+		@SuppressWarnings("deprecation")
+		int count=jdbcTemplate.queryForInt(sql,deptId);
+		return count;
+		
+
+	}
+	public int getInactiveEmployee(int deptId)
+	{
+		String sql="select * from departments where active='?'";
+		@SuppressWarnings("deprecation")
+		int countInactive=jdbcTemplate.queryForInt(sql,deptId);
+		return countInactive;
 	}
 
 	@Override

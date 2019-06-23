@@ -22,7 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-<body id="page-top"  class="sidebar-toggled">
+<body id="page-top" class="sidebar-toggled">
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -60,6 +60,10 @@
 			<li class="nav-item active"><a class="nav-link"
 				href="employeeConfiguration"> <i class="fas fa-fw fa-users"></i>
 					<span>Employees</span>
+			</a></li>
+			<li class="nav-item "><a class="nav-link"
+				href="employeeRatingConfiguration"> <i
+					class="fas fa-fw fa-users"></i> <span>EmployeeRating</span>
 			</a></li>
 
 
@@ -126,8 +130,8 @@
 						<div class="input-group">
 
 							<div class="input-group-append">
-								<a class="btn btn-primary" href="logout">
-									<span>Logout</span> <i class="fas fa-sign-out-alt fa-sm"></i>
+								<a class="btn btn-primary" href="logout"> <span>Logout</span>
+									<i class="fas fa-sign-out-alt fa-sm"></i>
 								</a>
 							</div>
 						</div>
@@ -163,7 +167,7 @@
 												<span class="required text-danger">*</span>
 											</label>
 											<div class="col-lg-8 col-xl-8">
-												<form:input type="hidden" path="empId"/>
+												<form:input type="hidden" path="empId" />
 												<form:input type="text" class="form-control" id="firstname"
 													path="firstName" placeholder="" />
 											</div>
@@ -199,12 +203,18 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="skillset" class="col-lg-2 col-xl-2">Skill
+											<label for="skillSet" class="col-lg-2 col-xl-2">Skill
 												Set <span class="required text-danger">*</span>
 											</label>
 											<div class="col-lg-8 col-xl-8">
-												<form:input type="text" class="form-control" id="skillset"
-													placeholder="" path="skillSet" />
+												<label class="checkbox-inline"> <form:checkbox
+														path="skillSet" id="skillSet" value="java"/>Java
+												</label> <label class="checkbox-inline"> <form:checkbox
+														path="skillSet" id="skillSet" value="spring" />Spring
+												</label> <label class="checkbox-inline"> <form:checkbox
+														path="skillSet" id="skillSet" value="hibernate" />Hibernate
+												</label>
+
 											</div>
 										</div>
 										<div class="row form-group">
@@ -241,7 +251,8 @@
 												<span class="required text-danger">*</span>
 											</label>
 											<div class="col-lg-8 col-xl-8">
-												<form:select path="deptId" class="form-control select-picker">
+												<form:select path="deptId"
+													class="form-control select-picker">
 
 													<form:options items="${departments}" />
 												</form:select>

@@ -43,9 +43,7 @@
 				<div class="sidebar-brand-icon">
 					<i class="fas fa-university"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">
-					HRMS 
-				</div>
+				<div class="sidebar-brand-text mx-3">HRMS</div>
 			</a>
 
 			<!-- Divider -->
@@ -53,8 +51,8 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="departmentConfiguration">
-					<i class="fas fa-fw fa-building"></i> <span>Departments</span>
+				href="departmentConfiguration"> <i class="fas fa-fw fa-building"></i>
+					<span>Departments</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -65,8 +63,12 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item "><a class="nav-link"
-				href="employeeConfiguration">
-					<i class="fas fa-fw fa-users"></i> <span>Employees</span>
+				href="employeeConfiguration"> <i class="fas fa-fw fa-users"></i>
+					<span>Employees</span>
+			</a></li>
+			<li class="nav-item "><a class="nav-link"
+				href="employeeRatingConfiguration"> <i
+					class="fa fa-star"></i> <span>EmployeeRating</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -101,9 +103,8 @@
 
 						<!-- Nav Item - Alerts -->
 						<li class="nav-item active no-arrow mx-1 show"><a
-							class="nav-link"
-							href="analytics">
-								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Alerts -->
+							class="nav-link" href="analytics"> <i
+								class="fas fa-fw fa-chart-area"></i> <!-- Counter - Alerts -->
 								Analytics
 						</a> <!-- Dropdown - Alerts --></li>
 
@@ -116,9 +117,8 @@
 
 
 						<li class="nav-item no-arrow mx-1 bg-gradient-primary"><a
-							class="nav-link"
-							href="departmentConfiguration">
-								<i class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
+							class="nav-link" href="departmentConfiguration"> <i
+								class="fas fa-fw fa-chart-area"></i> <!-- Counter - Configurations -->Configuration
 						</a> <!-- Dropdown - Alerts --></li>
 					</ul>
 
@@ -127,8 +127,8 @@
 						<div class="input-group">
 
 							<div class="input-group-append">
-								<a class="btn btn-primary" href="logout">
-									<span>Logout</span> <i class="fas fa-sign-out-alt fa-sm"></i>
+								<a class="btn btn-primary" href="logout"> <span>Logout</span>
+									<i class="fas fa-sign-out-alt fa-sm"></i>
 								</a>
 							</div>
 						</div>
@@ -139,15 +139,25 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					
+
 					<!-- DataTables Department -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">Department Details
-								</h6>
+							<h6 class="m-0 font-weight-bold text-primary">Department
+								Details</h6>
 						</div>
 						<div class="card-body">
+							<c:if test="${not empty msg}">
+										<div class="text-info text-center">${msg}</div>
+									</c:if>
+									<div class="card-body">
+							<c:if test="${not empty deleteMsg}">
+										<div class="text-danger text-center">${deleteMsg}</div>
+									</c:if>
+									
 							<div><a href="addDepartment" class="btn btn-primary col-lg-2 float-lg-right">Add</a></div>
+						
+							
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" cellspacing="0">
 									<thead>
@@ -173,6 +183,7 @@
 									</tbody>
 								</table>
 							</div>
+							
 						</div>
 					</div>
 
@@ -199,8 +210,7 @@
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded"
-		href="#page-top"
+	<a class="scroll-to-top rounded" href="#page-top"
 		style="display: none;"> <i class="fas fa-angle-up"></i>
 	</a>
 

@@ -3,7 +3,10 @@ import com.hrms.model.EmployeeSkills;
 
 import java.util.List;
 
+import com.hrms.model.CountOfEmployeeRating;
 import com.hrms.model.Employee;
+import com.hrms.model.EmployeeRating;
+import com.hrms.model.EmployeeRatingDetails;
 
 /**
  * 
@@ -17,6 +20,6 @@ public interface EmployeesDAO {
 	public void updateEmployee(Employee employee);
 	public void deleteEmployee(int empId);
 	public void submitEmployee(Employee employee);
-
+    
 
 }
