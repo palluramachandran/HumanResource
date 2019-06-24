@@ -180,7 +180,7 @@
 												<td><c:out value="${e.lastName}" /></td>
 												<td><c:out value="${e.emailId}" /></td>
 												<td><c:out value="${e.designation}" /></td>
-												<td><c:out value="${e.skillSet}" /></td>
+												<td><c:out value="${e.skillSetString}" /></td>
 												<td><c:out value="${e.gender}" /></td>
 												<td><c:out value="${e.salary}" /></td>
 												<td class="text-center"><a

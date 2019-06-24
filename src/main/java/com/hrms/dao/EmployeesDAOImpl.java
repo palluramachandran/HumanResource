@@ -56,7 +56,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 
 			@Override
 			public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set").split(","),rs.getString("gender"),rs.getString("password"),rs.getInt("salary"));
+				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set").split(","),rs.getString("skill_set"),rs.getString("gender"),rs.getString("password"),rs.getInt("salary"));
 				return employee;
 			}
 			
@@ -71,7 +71,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 
 			@Override
 			public Employee mapRow(ResultSet rs, int rownum) throws SQLException {
-				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set").split(","),
+				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set").split(","),rs.getString("skill_set"),
 						rs.getString("gender"),rs.getString("password"),rs.getInt("salary"));
 				return employee;
 			}
