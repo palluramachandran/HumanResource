@@ -84,7 +84,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 	@Override
 	public void updateEmployee(Employee employee) {
 		String sql="update employee.employees   "+
-				 "set first_name=?,"+
+				 "set dept_id=?,first_name=?,"+
 				" last_name=?,"+
 				 "email_id=?,"+
 				"designation=?,"+
@@ -93,7 +93,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 				"password=?,"+
 				 "salary=? " + 
 				" where emp_id=?";
-		jdbcTemplate.update(sql,employee.getFirstName(),employee.getLastName(),employee.getEmailId(),employee.getDesignation(),employee.getSkillSet(),employee.getGender(),employee.getPassword(),employee.getSalary(),employee.getEmpId());
+		jdbcTemplate.update(sql,employee.getDeptId(),employee.getFirstName(),employee.getLastName(),employee.getEmailId(),employee.getDesignation(),employee.getSkillSet(),employee.getGender(),employee.getPassword(),employee.getSalary(),employee.getEmpId());
 		
 	}
 

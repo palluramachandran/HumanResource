@@ -528,7 +528,6 @@
 		
 		//Submitting rating form start
 		$("#ratingSubmitId").click(function(){
-			alert("inside");
 			var empId=document.getElementById("empId").value;
 			var rating=document.getElementById("rating").value;
 			
@@ -537,9 +536,6 @@
 			employee.rating=Number(rating);
 			employee.description="";
 			
-			alert(JSON.stringify(employee));
-			
-			alert(empId);
 			$.ajax({
 				  type: "POST",
 				  url: "submitRatingRest",
