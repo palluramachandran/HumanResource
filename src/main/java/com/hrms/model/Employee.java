@@ -20,7 +20,7 @@ public class Employee {
 	@NotEmpty
 	String emailId;
 	String designation;
-	String skillSet;
+	String[] skillSet;
 	String gender="male";
 	String password;
 	int salary;
@@ -29,7 +29,7 @@ public class Employee {
 	{
 		
 	}
-	public Employee(int deptId,int empId,String firstName,String lastName,String emailId,String designation,String skillSet,String gender,String password,int salary)
+	public Employee(int deptId,int empId,String firstName,String lastName,String emailId,String designation,String[] skillSet,String gender,String password,int salary)
 		{
 		this.deptId=deptId;
 		this.empId=empId;
@@ -79,10 +79,10 @@ public class Employee {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String getSkillSet() {
+	public String[] getSkillSet() {
 		return skillSet;
 	}
-	public void setSkillSet(String skillSet) {
+	public void setSkillSet(String[] skillSet) {
 		this.skillSet = skillSet;
 	}
 	public String getGender() {

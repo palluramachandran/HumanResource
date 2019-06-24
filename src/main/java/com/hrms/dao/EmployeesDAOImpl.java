@@ -2,6 +2,7 @@ package com.hrms.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 
 			@Override
 			public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set"),rs.getString("gender"),rs.getString("password"),rs.getInt("salary"));
+				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set").split(","),rs.getString("gender"),rs.getString("password"),rs.getInt("salary"));
 				return employee;
 			}
 			
@@ -70,7 +71,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 
 			@Override
 			public Employee mapRow(ResultSet rs, int rownum) throws SQLException {
-				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set"),
+				Employee employee=new Employee(rs.getInt("dept_id"),rs.getInt("emp_id"),rs.getString("first_name"),rs.getString("last_name"),rs.getString("email_id"),rs.getString("designation"),rs.getString("skill_set").split(","),
 						rs.getString("gender"),rs.getString("password"),rs.getInt("salary"));
 				return employee;
 			}
@@ -93,7 +94,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 				"password=?,"+
 				 "salary=? " + 
 				" where emp_id=?";
-		jdbcTemplate.update(sql,employee.getDeptId(),employee.getFirstName(),employee.getLastName(),employee.getEmailId(),employee.getDesignation(),employee.getSkillSet(),employee.getGender(),employee.getPassword(),employee.getSalary(),employee.getEmpId());
+		jdbcTemplate.update(sql,employee.getDeptId(),employee.getFirstName(),employee.getLastName(),employee.getEmailId(),employee.getDesignation(),String.join(",",employee.getSkillSet()),employee.getGender(),employee.getPassword(),employee.getSalary(),employee.getEmpId());
 		
 	}
 
@@ -108,7 +109,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 	public void submitEmployee(Employee employee) {
 		String sql="insert into employee.employees e  (e.emp_Id,e.first_name,e.last_name,e.email_id,e.designation,e.skill_set,e.gender,e.password,e.salary,e.dept_id) " + 
 				"values(employee.emp_sequence.nextval,?,?,?,?,?,?,?,?,?)	";
-		jdbcTemplate.update(sql,employee.getFirstName(),employee.getLastName(),employee.getEmailId(),employee.getDesignation(),employee.getSkillSet(),employee.getGender(),employee.getPassword(),employee.getSalary(),employee.getDeptId());
+		jdbcTemplate.update(sql,employee.getFirstName(),employee.getLastName(),employee.getEmailId(),employee.getDesignation(),String.join(",",employee.getSkillSet()),employee.getGender(),employee.getPassword(),employee.getSalary(),employee.getDeptId());
 
 		
 		
