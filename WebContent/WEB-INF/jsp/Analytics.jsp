@@ -110,7 +110,7 @@
 						<div class="col-xl-6 col-lg-6">
 							<div class="card shadow mb-4">
 								<!-- Card Header-->
-								<div
+								<div id="overviewHeader"
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">Department
 										Overview</h6>
@@ -127,7 +127,7 @@
 						<!-- Departments Details Table-->
 						<div class="col-xl-6 col-lg-6 mb-4">
 					<div class="card shadow mb-4 h-100">
-						<div class="card-header py-3">
+						<div id="departmentDetails" class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">Department Details
 								</h6>
 						</div>
@@ -165,7 +165,7 @@
 
 							<!-- Employee Skills Card -->
 							<div class="card shadow mb-4 h-100">
-								<div class="card-header py-3">
+								<div id="employeeSkills" class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">Employee
 										Skills</h6>
 								</div>
@@ -182,7 +182,7 @@
 
 							<!-- Department Level Skills Card -->
 							<div class="card shadow mb-4 h-100">
-								<div class="card-header py-3">
+								<div id="departmentLevel"class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">Department
 										Level Skills</h6>
 								</div>
@@ -195,12 +195,12 @@
 						</div>
 					</div>
 					<div class="row">
-											
-<!-- --countRating pie chart start -->
-<div class="col-xl-6 col-lg-6">
+
+						<!-- --countRating pie chart start -->
+						<div class="col-xl-6 col-lg-6">
 							<div class="card shadow mb-4">
 								<!-- Card Header-->
-								<div
+								<div id="departmentRating"
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">Employee
 										Rating</h6>
@@ -213,13 +213,58 @@
 								</div>
 							</div>
 						</div>
-						
-				<!-- --countRating pie chart end -->
-					
-					
-					
+
+						<!-- --countRating pie chart end -->
+						<div class="col-xl-6 col-lg-6">
+							<div class="card shadow mb-4 h-100">
+
+								<div id="loadButton"
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<div class="col-xl-6 col-lg-6 ">
+										<input type="button" value="Load" class="btn btn-primary" />
+									</div>
+								</div>
+								<div id="loadCardBody" class="card-body"></div>
+
+							</div>
+						</div>
 					</div>
-					
+					<div class="row">
+
+						<div class="col-xl-6 col-lg-6">
+							<div class="card shadow mb-4 h-100">
+
+								<div id="submit"
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">Rating
+								</h6>
+									
+								</div>
+								<div id="submitCard" class="card-body">
+									<div class="form-group row">
+										<label for="empId" class="col-lg-4 col-xl-4">EmpID</label>
+										<div class="col-lg-6 col-xl-6">
+											<input type="text" class="form-control" id="empId" />
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="rating" class="col-lg-4 col-xl-4">Rating</label>
+										<div class="col-lg-6 col-xl-6">
+											<input type="text" class="form-control" id="rating" />
+										</div>
+									</div>
+									<div class="form-group row">
+										<input id="ratingSubmitId" type="button" value="submit" class="btn btn-primary"/>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+
+					</div>
+
 				</div>
 				<!-- /.container-fluid -->
 
@@ -230,7 +275,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright Â© Pallavi PR 2019</span>
+						<span>Copyright © Pallavi PR 2019</span>
 					</div>
 				</div>
 			</footer>
@@ -425,7 +470,91 @@
 		    
 		  
 	
-	
+		  //hide and show department overview-start
+		  $(document).ready(function(){
+			  $("#overviewHeader").click(function(){
+				  $("#highChartsDepartments").hide();
+				 });
+ 	       
+		  //hide and show department overview-end
+		  
+		  //fade departmentDetails-start 
+		  $("#departmentDetails").click(function(){
+			  
+			  $("#dataTable").fadeToggle();
+			  
+		  });
+		  //fade departmentDetails-end
+		  
+		   //fade employeeSkills-start 
+
+              $("#employeeSkills").click(function(){
+			  
+			  $("#highChartsEmployeeSkills").fadeToggle();
+			  
+		  });
+ //fade employeeSkills-end
+ 
+  //fade departmentlevel-start
+ 
+             $("#departmentLevel").click(function(){
+	  
+	         $("#highChartsDepartmentSkills").fadeToggle();
+	  
+          });
+ //fade departmentLevel-end 
+ 
+  //fade departRating-start 
+ 
+            $("#departmentRating").click(function(){
+	  
+	        $("#highChartsEmployeeRating").fadeToggle();
+	  
+         });
+ //fade departmenRating-end
+ 
+ //reading text file on load button-start
+     
+		$("#loadButton").click(function() {
+				
+				$.get("resources/info.txt", function(data) {
+					
+				$("#loadCardBody").text(data);	
+
+				});
+
+			});
+		//reading text file on load button-end
+		
+		//Submitting rating form start
+		$("#ratingSubmitId").click(function(){
+			alert("inside");
+			var empId=document.getElementById("empId").value;
+			var rating=document.getElementById("rating").value;
+			
+			var employee={};
+			employee.empId=Number(empId);
+			employee.rating=Number(rating);
+			employee.description="";
+			
+			alert(JSON.stringify(employee));
+			
+			alert(empId);
+			$.ajax({
+				  type: "POST",
+				  url: "submitRatingRest",
+				  dataType: "json",
+				  contentType: 'application/json',
+				  data: JSON.stringify(employee),
+				  success : function(){
+					  alert("success");
+				  }
+				});
+		});
+		//Submitting rating form end
+		
+		
+		});
 	</script>
 
 
