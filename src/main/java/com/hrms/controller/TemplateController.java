@@ -122,9 +122,15 @@ public class TemplateController {
 		
 	}
 	@RequestMapping(value="/updateTemplate",method=RequestMethod.POST)
-	public ModelAndView updateTemplate(@ModelAttribute Template template)
+	public ModelAndView updateTemplate(@Valid @ModelAttribute Template template,BindingResult bindingresult )
 	{
-		
+		if(bindingresult.hasErrors())
+		{
+			ModelAndView model=new ModelAndView();
+			model.addObject("timeList",getTimeList());
+			model.setViewName("TemplateForm");
+			return model;
+		}
 		templateService.updateTemplate(template);
 		ModelAndView model=new ModelAndView();
 		List<Template> templates=templateService.getTemplates();
