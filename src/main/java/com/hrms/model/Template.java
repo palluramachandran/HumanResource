@@ -3,48 +3,64 @@ package com.hrms.model;
 public class Template {
 	
 	int id;
-	String templateName;
-	String templateDescription;
-	boolean active;
-	String [] weekdays;
-	String weekdaysString;
+	String wotName;
+	String wotDescription;
+	String active;
+	String [] workDays;
+	String workDaysString;
 	String startTime;
 	String endTime;
+	
+	public Template() {}
+	
+	public Template(int id, String wotName, String wotDescription, String active, String[] workDays,
+			String workDaysString, String startTime, String endTime) {
+		super();
+		this.id = id;
+		this.wotName = wotName;
+		this.wotDescription = wotDescription;
+		this.active = active;
+		this.workDays = workDays;
+		this.workDaysString = workDaysString;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTemplateName() {
-		return templateName;
+	public String getWotName() {
+		return wotName;
 	}
-	public void setTemplateName(String templateName) {
-		this.templateName = templateName;
+	public void setWotName(String wotName) {
+		this.wotName = wotName;
 	}
-	public String getTemplateDescription() {
-		return templateDescription;
+	public String getWotDescription() {
+		return wotDescription;
 	}
-	public void setTemplateDescription(String templateDescription) {
-		this.templateDescription = templateDescription;
+	public void setWotDescription(String wotDescription) {
+		this.wotDescription = wotDescription;
 	}
-	public boolean isActive() {
+	public String getActive() {
 		return active;
 	}
-	public void setActive(boolean active) {
+	public void setActive(String active) {
 		this.active = active;
 	}
-	public String[] getWeekdays() {
-		return weekdays;
+	public String[] getWorkDays() {
+		return workDays;
 	}
-	public void setWeekdays(String[] weekdays) {
-		this.weekdays = weekdays;
+	public void setWorkDays(String[] workDays) {
+		this.workDays = workDays;
 	}
-	public String getWeekdaysString() {
-		return weekdaysString;
+	public String getWorkDaysString() {
+		return workDaysString;
 	}
-	public void setWeekdaysString(String weekdaysString) {
-		this.weekdaysString = weekdaysString;
+	public void setWorkDaysString(String workDaysString) {
+		this.workDaysString = workDaysString;
 	}
 	public String getStartTime() {
 		return startTime;
@@ -58,5 +74,4 @@ public class Template {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-
 }

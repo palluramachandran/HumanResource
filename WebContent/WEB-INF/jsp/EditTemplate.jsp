@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Add Template</title>
+<title>Edit Template</title>
 
 <!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -159,12 +159,13 @@
 								<div class="card-body">
 
 									<form:form modelAttribute="template" method="post"
-										action="submitTemplate">
+										action="updateTemplate">
 
 										<div class="form-group row">
 											<label for="wotName" class="col-lg-2 col-xl-2">Template Name
 											</label>
 											<div class="col-lg-6 col-xl-6">
+											<form:hidden path="id"/>
 												<form:input type="text" class="form-control" id="wotName"
 													path="wotName" placeholder="" />
 											</div>

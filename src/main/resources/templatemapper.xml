@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.dao.TemplateDAOImpl">
+
+	<resultMap type="template" id="result">
+
+		<id property="id" />
+		
+		<result property="wotName" column="name" />
+		<result property="wotDescription" column="description" />
+		<result property="active" column="activeFlag" />
+		<result property="workDaysString" column="workDays" />
+		<result property="startTime" column="startTime"/>
+		<result property="endTime" column="endTime"/>
+		
+		
+		
+
+	</resultMap>
+
+	<select id="getTemplate" resultType="template"
+		resultMap="result">
+	select id,name,description,activeFlag,workDays,startTime,endTime from employee.worktemplatedetail
+		</select>
+		
+		<insert id="submitTemplate" parameterType="template">
+		insert into employee.worktemplatedetail(id,name,description,activeFlag,workDays,startTime,endTime,createdOn)
+        Values(	employee.TEMPLATE_SEQ.nextval,#{wotName},#{wotDescription},#{active},#{workDaysString},#{startTime},#{endTime},SYSDATE)
+		</insert>
+		
+		<select id="editTemplate" resultType="template"
+		resultMap="result">
+		
+	select w.id,w.name,w.description,w.activeFlag,w.workDays,w.startTime,w.endTime from employee.worktemplatedetail w where w.id=#{id}
+		</select>
+		<update id="updateTemplate" parameterType="template">
+	
+update employee.worktemplatedetail set
+		name=#{wotName},description=#{wotDescription},activeFlag=#{active},workDays=#{workDaysString},startTime=#{startTime},endTime=#{endTime} where
+		id=#{id}
+		</update>
+		<delete id="deleteTemplate" parameterType="template">
+		delete from employee.worktemplatedetail where id=#{id}
+		
+		</delete>
+</mapper>
