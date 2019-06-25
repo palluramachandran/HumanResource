@@ -5,9 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +31,14 @@ public class TemplateController {
 	public void setTemplateService(TemplateService templateService)
 	{
 		this.templateService=templateService;
+	}
+	@Autowired
+	@Qualifier("templateValidator")
+	private Validator validator;
+
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
 	}
 	
 	@RequestMapping("/getTemplate")
@@ -50,7 +65,14 @@ public class TemplateController {
 	}
 	
 	@RequestMapping("/submitTemplate")
-	public ModelAndView submitTemplate(@ModelAttribute Template template) {
+	public ModelAndView submitTemplate(@Valid @ModelAttribute Template template,BindingResult bindingresult ) {
+		if(bindingresult.hasErrors())
+		{
+			ModelAndView model=new ModelAndView();
+			model.addObject("timeList",getTimeList());
+			model.setViewName("TemplateForm");
+			return model;
+		}
 		templateService.submitTemplate(template);
 		List<Template> templates=templateService.getTemplates();
 		ModelAndView model=new ModelAndView();

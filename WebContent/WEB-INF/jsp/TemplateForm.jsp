@@ -218,6 +218,10 @@
 													<form:options items="${timeList}" />
 												</form:select>
 											</div>
+											<div class="col-lg-4 col-xl-4 ">
+												<form:errors path="startTime"
+													class="form-control alert alert-warning" />
+											</div>
 										</div>
 										
 										<div class="form-group row">
@@ -229,6 +233,10 @@
 
 													<form:options items="${timeList}" />
 												</form:select>
+											</div>
+											<div class="col-lg-4 col-xl-4 ">
+												<form:errors path="endTime"
+													class="form-control alert alert-warning" />
 											</div>
 										</div>
 
